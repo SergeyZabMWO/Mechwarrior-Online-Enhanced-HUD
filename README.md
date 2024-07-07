@@ -21,6 +21,13 @@ As a result(after edit ), we get a flat interface without scaling. all we have t
 ![image](https://github.com/SergeyZabMWO/Mechwarrior-Online-Enhanced-HUD/assets/173540532/b7b48cb3-1e1c-400d-a36c-1a5270574c13)
 
 
+Moving the necessary objects for our screen resolution
+![image](https://github.com/SergeyZabMWO/Mechwarrior-Online-Enhanced-HUD/assets/173540532/5b25600e-d1e6-4621-bcff-ed147dbf2b48)
+Depending of AS code in MechHUD
+![image](https://github.com/SergeyZabMWO/Mechwarrior-Online-Enhanced-HUD/assets/173540532/bf484286-0889-4faf-b529-96ef5f4751c7)
+
+
+
 
 
 
