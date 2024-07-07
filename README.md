@@ -1,5 +1,5 @@
 # Mechwarrior-Online-Enhanced-HUD
-Extended HUD - Whis project to upgrade default MWO uncomfortable and not rational Battle HUD.
+Enhanced HUD - Whis project to upgrade default MWO uncomfortable and not rational Battle HUD.
 
 HUD consists of two parts:
 
