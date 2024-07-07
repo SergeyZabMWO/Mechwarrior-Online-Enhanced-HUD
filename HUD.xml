@@ -1,0 +1,805 @@
+<UIElements name="HUD">
+
+	<UIElement name="HUD" keyevents="1">
+
+		<GFx file="HUD\Common\HUDMain.gfx" layer="0">
+			<Constraints>
+				<Align mode="noscale" halign="center" valign="center" scale="0" />
+			</Constraints>
+		</GFx>
+
+    <functions>
+
+      <!-- EnableTweekTool ==================================================================================== -->
+      <function name="EnableTweekTool" funcname="mcMain.EnableTweekTool"/>
+      <!-- EnableTweekTool ==================================================================================== -->
+
+      <function name="OnAction" funcname="mcMain.OnAction">
+        <param name="action" desc="action that has happened"/>
+        <param name="activationMode" desc="event pressed/released/held"/>
+      </function>
+
+      <!-- LAYOUT ==================================================================================== -->
+      <function name="SetLayout" funcname="mcMain.LoadLayout">
+        <param name="swfID" desc="swf of the mech to load eg 0 == Atlas.swf"/>
+      </function>
+
+      <function name="HideLayout" funcname="mcMain.HideLayout"/>
+      <function name="ShowLayout" funcname="mcMain.ShowLayout"/>
+
+      <function name="SetGameState" funcname="mcMain.SetGameState">
+        <param name="iState" desc=""/>
+      </function>
+
+      <function name="SetHudCounterToCapture" funcname="mcMain.mcCurrentLayout.mcLayout.SetHudCounterToCapture">
+        <param name="a_bIsCaptureMode" desc="changes the hud for capture gamemodes"/>
+      </function>
+      <!-- LAYOUT ==================================================================================== -->
+
+      <!-- Component Functions ================================================================================ -->
+      <function name="Set3rdPersonMode" funcname="mcMain.mcCurrentLayout.mcLayout.Set3rdPersonMode">
+        <param name="In3rdPerson" desc="lalal"/>
+      </function>
+
+      <function name="SetHUDGameMode" funcname="mcMain.mcCurrentLayout.mcLayout.SetGameMode">
+        <param name="GameMode" desc="what mode is it"/>
+      </function>
+
+      <function name="SetPlayerTeam" funcname="mcMain.mcCurrentLayout.mcLayout.SetPlayerTeam">
+        <param name="TeamID" desc="team ID"/>
+      </function>
+
+      <function name="UpdateAssaultBases" funcname="mcMain.mcCurrentLayout.mcLayout.UpdateAssaultModeBases">
+        <param name="a_YourBase" desc="percent capture of the base"/>
+        <param name="a_EnemyBase" desc="percent capture of the base"/>
+      </function>
+
+      <function name="UpdateConquestModeCapPnts" funcname="mcMain.mcCurrentLayout.mcLayout.UpdateConquestModeCapPnts">
+        <param name="pointID" desc="id of the capture point"/>
+        <param name="Progress" desc="percent capture of the point"/>
+        <param name="OwnThreshold" desc="threshold at which a team owns the cap point"/>
+        <param name="InProgress" desc="Capture In progress"/>
+        <param name="OwningTeamId" desc="Team that owns the point"/>
+        <param name="TeamIDCapInProgress" desc="team id of the Capture In progress"/>
+        <param name="LocalTeamID" desc="team id of the local client"/>
+      </function>
+
+      <function name="UpdateInvasionBaseHealth" funcname="mcMain.mcCurrentLayout.mcLayout.UpdateInvasionBaseHealth">
+        <param name="baseId" desc="Always 0"/>
+        <param name="healthPct" desc="Health of base"/>
+        <param name="bIsDefender" desc="Client is defending"/>
+        <param name="bIsGateOpened" desc="Gate is opened"/>
+      </function>
+
+      <function name="UpdateInvasionGateHealth" funcname="mcMain.mcCurrentLayout.mcLayout.UpdateInvasionGateHealth">
+        <param name="id" desc="Id of generator"/>
+        <param name="name" desc="Gate Name"/>
+        <param name="helth" desc="Health of generator"/>
+        <param name="bGateOpened" desc="Health of gate house"/>
+        <param name="bBaseGate" desc="Is base gate"/>
+        <param name="bIsDefender" desc="Client is defending"/>
+        <param name="numGates" desc="number of gates"/>
+      </function>
+
+	  <function name="UpdateRelicModeStatus" funcname="mcMain.mcCurrentLayout.mcLayout.UpdateRelicModeStatus">
+        <param name="a_Status" desc="relic mode status"/>
+      </function>
+
+      <function name="UpdateAssaultGenerator" funcname="mcMain.mcCurrentLayout.mcLayout.UpdateAssaultGenerators">
+        <param name="a_sName" desc="Name to display in bar"/>
+        <param name="a_Status" desc="Status of generator"/>
+        <param name="a_bIsTeam" desc="Is team generator"/>
+        <param name="a_fHealthPct" desc="Health of generator"/>
+        <param name="a_Id" desc="Id of bar"/>
+      </function>
+
+      <function name="SetTeamNearWin" funcname="mcMain.mcCurrentLayout.mcLayout.SetTeamNearWin">
+        <param name="teamID" desc="id of the team near win"/>
+      </function>
+
+      <function name="UpdateGameTimer" funcname="mcMain.mcCurrentLayout.mcLayout.UpdateGameTimer">
+        <param name="a_iMinutes" desc="gametime, minutes left in match"/>
+        <param name="a_iSeconds" desc="gametime, seconds left in match"/>
+      </function>
+
+      <function name="UpdateGameScore" funcname="mcMain.mcCurrentLayout.mcLayout.UpdateGameScore">
+        <param name="a_iLeft" type="string" desc="score to show on the left"/>
+        <param name="a_iLeftSecondary" type="string" desc="secondary score to show on the left"/>
+        <param name="a_iRight" type="string" desc="score to show on the right"/>
+        <param name="a_iRightSecondary" type="string" desc="secondary score to show on the right"/>
+      </function>
+
+      <function name="StartChat" funcname="mcMain.mcCurrentLayout.mcLayout.StartChat">
+        <param name="Mode" desc="mode all/team/lance"/>
+      </function>
+
+      <function name="ScrollChatUp" funcname="mcMain.mcCurrentLayout.mcLayout.ScrollChatUp" />
+      <function name="ScrollChatDown" funcname="mcMain.mcCurrentLayout.mcLayout.ScrollChatDown" />
+      <function name="ScrollChatToBottom" funcname="mcMain.mcCurrentLayout.mcLayout.ScrollChatToBottom" />
+
+      <function name="RequestSendChat" funcname="mcMain.mcCurrentLayout.mcLayout.RequestSendChat" />
+
+      <function name="RequestSyncChatText" funcname="mcMain.mcCurrentLayout.mcLayout.RequestSyncChatText" />
+      
+      <function name="ReceiveSyncedChatText" funcname="mcMain.mcCurrentLayout.mcLayout.ReceiveSyncedChatText">
+        <param name="Type" desc="Type all/team/lance" type="number" />
+        <param name="Message" desc="Message" type="string" />
+        <param name="ActiveScreenID" desc="The active screen ID (preround, in-game, eor, death, etc.)" type="number" />
+      </function>
+
+      <function name="ForceCloseChat" funcname="mcMain.mcCurrentLayout.mcLayout.ForceCloseChat" />
+
+      <function name="PostChatMessage" funcname="mcMain.mcCurrentLayout.mcLayout.PostChatMessage">
+        <param name="DisplayName" desc="user sending text" type="string"/>
+        <param name="Message" desc="string msg that is sent" type="string"/>
+        <param name="Mode" desc="mode all/team/lance" type="number"/>
+        <param name="bDead" desc="is player dead" type="bool"/>
+        <param name="bCommander" desc="is player Commander" type="bool"/>
+        <param name="bLanceCommander" desc="is player Lance Commander" type="bool"/>
+        <param name="bIsSameTeam" desc="is player on the same team as local player"/>
+        <param name="ActiveScreenID" desc="The active screen ID (preround, in-game, eor, death, etc.)" type="number" />
+        <param name="Timestamp" desc="Timestamp" type="number" />
+      </function>
+
+      <function name="PostSystemChatMsg" funcname="mcMain.mcCurrentLayout.mcLayout.PostSystemChatMsg">
+        <param name="DataArray" desc=" "/>
+      </function>
+
+      <function name="SetChatCallouts" funcname="mcMain.mcCurrentLayout.mcLayout.SetChatCallouts">
+        <param name="a_sScrollUp" desc="Scroll up key"/>
+        <param name="a_sScrollDown" desc="Scroll down key"/>
+        <param name="a_sScrollEnd" desc="Scroll end key"/>
+      </function>
+
+      <function name="GivePlayerFeedback" funcname="mcMain.mcCurrentLayout.mcLayout.GivePlayerFeedback">
+        <param name="a_sPrefix" desc=""/>
+        <param name="a_iCBills" desc="number of cbills"/>
+        <param name="a_iEXP" desc="number of exp"/>
+        <param name="a_iACC" desc="number of acc"/>
+        <param name="a_sExtraData" desc="Extra String Data"/>
+        <param name="a_iDisplayMode" desc="Old or new reward display"/>
+      </function>
+
+      <function name="UpdateHeading" funcname="mcMain.mcCurrentLayout.mcLayout.UpdateHeading">
+        <param name="LookHeading" desc="Degrees off North"/>
+        <param name="FeetHeading" desc="Degrees off North"/>
+        <param name="WorldX" desc="X position of mech"/>
+        <param name="WorldY" desc="Y position of mech"/>
+      </function>
+
+      <function name="UpdateMissileLock" funcname="mcMain.mcCurrentLayout.mcLayout.UpdateMissileLock">
+        <param name="percentLocked" desc="percent of the missile is to locked"/>
+        <param name="lockConfirmed" desc="lock confirmed by server"/>
+			</function>
+
+			<function name="UpdateLookCrosshairPosition" funcname="mcMain.mcCurrentLayout.mcLayout.UpdateCrosshairPosition">
+				<param name="LookX" desc="x position look ch"/>
+				<param name="LookY" desc="y position look ch"/>
+				<param name="TorsoX" desc="x position torso CH"/>
+				<param name="TorsoY" desc="y position torso CH"/>
+				<param name="Distance" desc="distance"/>
+				<param name="Depth" desc="depth"/>
+			</function>
+
+			<function name="PlayHitFeedbackAnim" funcname="mcMain.mcCurrentLayout.mcLayout.PlayHitFeedbackAnim"/>
+
+			<function name="UpdateRangeFinder" funcname="mcMain.mcCurrentLayout.mcLayout.UpdateRangeFinder">
+				<param name="range" desc="range location of the crosshair"/>
+			</function>
+
+			<function name="UpdateEngineThrottle" funcname="mcMain.mcCurrentLayout.mcLayout.UpdateEngineThrottle">
+				<param name="perOfMax" desc="percent of maximum throttle"/>
+				<param name="isReverse" desc="moving backwards?"/>
+			</function>
+
+			<function name="UpdateEnginePower" funcname="mcMain.mcCurrentLayout.mcLayout.UpdateEnginePower">
+				<param name="perOfMax" desc="percent of maximum Power"/>
+				<param name="perOfMaxMASC" desc="percent of maximum MASC power"/>
+				<param name="isReverse" desc="moving backwards?"/>
+			</function>
+
+			<function name="UpdateVelocityReadout" funcname="mcMain.mcCurrentLayout.mcLayout.UpdateVelocityReadout">
+				<param name="velocity" desc="your speed"/>
+			</function>
+
+			<function name="UpdateJumpJetFuel" funcname="mcMain.mcCurrentLayout.mcLayout.UpdateJumpJetFuel">
+				<param name="a_fFuelPer" desc="remaining fuel"/>
+			</function>
+
+			<function name="UpdatePitchAngle" funcname="mcMain.mcCurrentLayout.mcLayout.UpdatePitchAngle">
+				<param name="pitchAngle" desc="Angle of Pitch"/>
+				<param name="maxPitchAngle" desc="Max angle of Pitch"/>
+			</function>
+
+			<function name="ActiveVisionMode" funcname="mcMain.mcCurrentLayout.mcLayout.SetVisionState">
+				<param name="iZoomState" desc="zoom state"/>
+				<param name="zoomFactorText" desc="like '1.0x' this changes depending on equipped boosts, so is now messaged explicitly"/>
+				<param name="iVisionMode" desc="vision Mode"/>
+				<param name="iTexId" desc="texture id of the PIP zoom render texture"/>
+			</function>
+
+			<function name="UpdateFallDamageIndicator" funcname="mcMain.mcCurrentLayout.mcLayout.UpdateFallDamageIndicator">
+				<param name="a_fFts" desc="Vertical velocity in Feet per second"/>
+				<param name="fallDamageText" desc="Letter to indicate what type of fall damage was last taken"/>
+			</function>
+
+			<function name="SetMechName" funcname="mcMain.mcCurrentLayout.mcLayout.SetMechName">
+				<param name="sName" desc="name of the mech"/>
+			</function>
+
+			<function name="UpdateDamageIndicator" funcname="mcMain.mcCurrentLayout.mcLayout.UpdateDamageIndicator">
+				<param name="DataArray" desc=" "/>
+			</function>
+
+			<function name="ShowOOBWarning" funcname="mcMain.mcCurrentLayout.mcLayout.ShowOOBWarning">
+				<param name="iTimeRemaining" desc="time remaining to be shown"/>
+				<param name="a_iID" desc="id of the OOB warning"/>
+			</function>
+
+			<function name="ShowTextWarning" funcname="mcMain.mcCurrentLayout.mcLayout.ShowTextWarning">
+				<param name="sText" desc="Text to be displayed"/>
+				<param name="iLine" desc="Line to display the text 0-1"/>
+				<param name="iId" desc="id of the warning to start"/>
+			</function>
+
+			<function name="StopTextWarning" funcname="mcMain.mcCurrentLayout.mcLayout.StopTextWarning">
+				<param name="iId" desc="id of the warning to stop"/>
+			</function>
+
+      <function name="InitCoolantMeter" funcname="mcMain.mcCurrentLayout.mcLayout.InitCoolantMeter">
+        <param name="a_iNumCoolants" desc="total number of coolant modules"/>
+        <param name="a_iNumAdvanced" desc="number of advanced modules"/>
+      </function>
+
+      <function name="UpdateCoolantMeter" funcname="mcMain.mcCurrentLayout.mcLayout.UpdateCoolantMeter">
+        <param name="a_fPercent" desc="current coolant val"/>
+      </function>
+
+      <function name="UpdateHeatMeter" funcname="mcMain.mcCurrentLayout.mcLayout.UpdateHeatMeter">
+        <param name="a_iCurHeat" desc="current heat val"/>
+        <param name="a_iMaxHeat" desc="max heat val"/>
+      </function>
+
+      <function name="ShowGraphicWarning" funcname="mcMain.mcCurrentLayout.mcLayout.ShowGraphicWarning">
+        <param name="a_sWarningPath" desc="path to the swf of the warning to be played"/>
+      </function>
+
+      <function name="SetWeaponGroupStatus" funcname="mcMain.mcCurrentLayout.mcLayout.SetWeaponGroupStatus">
+        <param name="DataArr" desc=""/>
+      </function>
+
+      <function name="SetChainfireStatus" funcname="mcMain.mcCurrentLayout.mcLayout.SetChainfireStatus">
+        <param name="Idx" desc=""/>
+        <param name="bOn" desc=""/>
+      </function>
+
+      <function name="SetNextChainFireWeapon" funcname="mcMain.mcCurrentLayout.mcLayout.SetNextChainFireWeapon">
+        <param name="idx" desc=""/>
+        <param name="iWeapon" desc=""/>
+      </function>
+
+      <function name="SetWeaponLoadoutInfo" funcname="mcMain.mcCurrentLayout.mcLayout.SetWeaponLoadoutInfo">
+        <param name="args" desc="string of args"/>
+      </function>
+
+      <function name="SetStealthArmourLoadoutInfo" funcname="mcMain.mcCurrentLayout.mcLayout.SetStealthArmourLoadoutInfo">
+        <param name="ID" desc="ecmUID"/>
+        <param name="name" desc="name"/>
+        <param name="destroyed" desc="is destroyed"/>
+        <param name="active" desc="active"/>
+        <param name="cooldown" desc="cooldown"/>
+      </function>
+
+      <function name="SetECMLoadoutInfo" funcname="mcMain.mcCurrentLayout.mcLayout.SetECMLoadoutInfo">
+        <param name="ID" desc="ecmUID"/>
+        <param name="name" desc="name"/>
+        <param name="destroyed" desc="is destroyed"/>
+        <param name="disruptionMode" desc="dstruption mode"/>
+        <param name="effectiveRange" desc="effective range"/>
+      </function>
+
+      <function name="SetAMSLoadoutInfo" funcname="mcMain.mcCurrentLayout.mcLayout.SetAMSLoadoutInfo">
+        <param name="ID" desc="amsUID"/>
+        <param name="name" desc="name"/>
+        <param name="ammo" desc="ammo amount"/>
+        <param name="maxRange" desc="max range"/>
+        <param name="numActive" desc="number of active ams"/>
+        <param name="enabled" desc="is enabled"/>
+      </function>
+
+      <function name="SetLaserAMSLoadoutInfo" funcname="mcMain.mcCurrentLayout.mcLayout.SetLaserAMSLoadoutInfo">
+        <param name="ID" desc="amsUID"/>
+        <param name="name" desc="name"/>
+        <param name="maxRange" desc="max range"/>
+        <param name="numActive" desc="number of active ams"/>
+        <param name="enabled" desc="is enabled"/>
+      </function>
+
+      <function name="SetUnderEnemyECM" funcname="mcMain.mcCurrentLayout.mcLayout.SetUnderEnemyECM">
+        <param name="bUnderECM" desc="is mech under ecm?"/>
+      </function>
+
+      <function name="AddStatusEffect" funcname="mcMain.mcCurrentLayout.mcLayout.AddStatusEffect">
+        <param name="statusID" desc="statusID"/>
+      </function>
+
+      <function name="UpdateScoutingStatus" funcname="mcMain.mcCurrentLayout.mcLayout.UpdateScoutingStatus">
+        <param name="statusId" desc="status id"/>
+        <param name="eAffinity" desc="status affinity"/>
+        <param name="fTimePct" desc="Time of status"/>
+      </function>
+
+      <function name="InitConsumableStatus" funcname="mcMain.mcCurrentLayout.mcLayout.InitConsumableStatus">
+        <param name="statusID" desc="statusID"/>
+        <param name="slot" desc="Slot"/>
+        <param name="initialState" desc="initialState"/>
+        <param name="key" desc="key"/>
+      </function>
+
+      <function name="UpdateConsumableStatus" funcname="mcMain.mcCurrentLayout.mcLayout.UpdateConsumableStatus">
+        <param name="statusID" desc="statusID"/>
+        <param name="state" desc="state"/>
+        <param name="timer" desc="timer"/>
+      </function>
+
+      <function name="RemoveStatusEffect" funcname="mcMain.mcCurrentLayout.mcLayout.RemoveStatusEffect">
+        <param name="statusID" desc="statusID"/>
+      </function>
+
+      <function name="AddDamageDirection" funcname="mcMain.mcCurrentLayout.mcLayout.AddDamageDirection">
+        <param name="iRot" desc=""/>
+      </function>
+
+      <function name="PlayEffect" funcname="mcMain.mcCurrentLayout.mcLayout.PlayEffect" >
+        <param name="Id" desc=" "/>
+      </function>
+
+      <function name="UpdateVipHealth" funcname="mcMain.mcCurrentLayout.mcLayout.UpdateVipHealth">
+        <param name="a_T" desc="Total"/>
+        <param name="a_CT" desc="centre_torso"/>
+        <param name="a_RT" desc="right_torso"/>
+        <param name="a_LT" desc="left_torso"/>
+        <param name="a_LA" desc="left_arm"/>
+        <param name="a_RA" desc="right_arm"/>
+        <param name="a_LL" desc="left_leg"/>
+        <param name="a_RL" desc="right_leg"/>
+        <param name="a_H" desc="head"/>
+        <param name="a_CTR" desc="centre_torso_rear"/>
+        <param name="a_LTR" desc="left_torso_rear"/>
+        <param name="a_RTR" desc="right_torso_rear"/>
+        <param name="a_bFriendly" desc="Friednly"/>
+      </function>
+
+      <!-- Targeting -->
+      <function name="SetTargetInfo" funcname="mcMain.mcCurrentLayout.mcLayout.SetTargetInfo">
+        <param name="stringData" desc=""/>
+      </function>
+      <function name="SetDetailedInfoDamage" funcname="mcMain.mcCurrentLayout.mcLayout.SetDetailedInfoDamage">
+        <param name="sData" desc=""/>
+      </function>
+      <function name="SetDetailedInfoComponentStrings" funcname="mcMain.mcCurrentLayout.mcLayout.SetDetailedInfoComponentStrings">
+        <param name="sData" desc=""/>
+      </function>
+      <function name="SetDetailedInfoName" funcname="mcMain.mcCurrentLayout.mcLayout.SetDetailedInfoName">
+        <param name="sName" desc="My mech type"/>
+      </function>
+      <function name="ShowDetialedInfo" funcname="mcMain.mcCurrentLayout.mcLayout.ShowDetialedInfo">
+        <param name="bVisible" desc="show it?"/>
+      </function>
+      
+      <function name="SetCrosshairVisible" funcname="mcMain.mcCurrentLayout.mcLayout.SetCrosshairVisible">
+        <param name="a_bVisible" desc="show it?"/>
+      </function>
+      
+      <function name="ResetDetailedInfo" funcname="mcMain.mcCurrentLayout.mcLayout.ResetDetailedInfo">
+      </function>
+      <!-- Targeting -->
+
+      <!-- LANCE -->
+      <function name="SetLancemateData" funcname="mcMain.mcCurrentLayout.mcLayout.SetLancemateData">
+        <param name="strData" desc=""/>
+      </function>
+      <!-- LANCE -->
+
+      <!-- BattleGrid -->
+      <function name="ShowBattleGrid" funcname="mcMain.mcCurrentLayout.mcLayout.ShowBattleGrid">
+        <param name="bVisible" desc="is battlegrid visible"/>
+				<param name="ShowBattleGridKeybind" desc="Keybind for the show_battlegrid action."/>
+				<param name="ToggleInfoPanelKeybind" desc="Keybind for the ToggleInfoVis action."/>
+      </function>
+      <function name="LoadMiniMap" funcname="mcMain.mcCurrentLayout.mcLayout.LoadMiniMap">
+        <param name="sPath" desc="Path to image file"/>
+        <param name="fStartX" desc="Map origin on X axis"/>
+        <param name="fStartY" desc="Map origin on Y axis"/>
+        <param name="fDistX" desc="size in meters of the width of map"/>
+        <param name="fDistY" desc="size in meters of the height of map"/>
+        <param name="cellSize" desc="Size of cell in metres"/>
+        <param name="minimapStyle" desc="Mini map style. 0 = old, 1 = new"/>
+        <param name="minimapIconScale" desc="Scale of minimap icon"/>
+        <param name="useDarkGrid" desc="Use dark grid"/>
+      </function>
+      <function name="UpdateBattleGridMarker" funcname="mcMain.mcCurrentLayout.mcLayout.UpdateBattleGridMarker">
+        <param name="Id" desc="Unique id of marker"/>
+        <param name="Type" desc="Flash movie clip identifier"/>
+        <param name="Visible" desc="Is marker visible?"/>
+        <param name="bShowOnCompass" desc="Show on compass?"/>
+        <param name="bPrimaryTarget" desc="Is primary target?"/>
+        <param name="X" desc="X position"/>
+        <param name="Y" desc="Y position"/>
+        <param name="eAllegiance" desc="Allegiance of marker"/>
+        <param name="Color" desc="Color of marker"/>
+        <param name="Data" desc="| seperated data"/>
+      </function>
+      <function name="ResetMarker" funcname="mcMain.mcCurrentLayout.mcLayout.ResetMarker" >
+        <param name="Marker" desc=" "/>
+        <param name="Id" desc=" "/>
+      </function>
+      <function name="SetLanceState" funcname="mcMain.mcCurrentLayout.mcLayout.SetLanceState">
+        <param name="sDataString" desc=" "/>
+      </function>
+      <function name="SetMiniMapZoom" funcname="mcMain.mcCurrentLayout.mcLayout.SetMiniMapZoom">
+        <param name="a_Zoom" desc="Zoom factor"/>
+      </function>
+      <function name="InitContextMenu" funcname="mcMain.mcCurrentLayout.mcLayout.InitContextMenu">
+        <param name="a_Data" desc=": (colon) separated menu data"/>
+      </function>
+      <!-- BattleGrid -->
+
+      <!-- Tutorial -->
+      <function name="HideAllHighlights" funcname="mcMain.mcCurrentLayout.mcLayout.HideAllHighlights"/>
+      <function name="ShowShade" funcname="mcMain.mcCurrentLayout.mcLayout.ShowShade"/>
+      <function name="HideShade" funcname="mcMain.mcCurrentLayout.mcLayout.HideShade"/>
+      <function name="OnRoadMapShow" funcname="mcMain.mcCurrentLayout.mcLayout.OnRoadMapShow">
+        <param name="a_bShow" type="bool" desc="Visible flag"/>
+      </function>
+      <function name="OnCommWindowShow" funcname="mcMain.mcCurrentLayout.mcLayout.OnCommWindowShow">
+        <param name="a_bShow" type="bool" desc="Visible flag"/>
+      </function>
+      <function name="OnStopWatchShow" funcname="mcMain.mcCurrentLayout.mcLayout.OnStopWatchShow">
+        <param name="a_bShow" type="bool" desc="Visible flag"/>
+      </function>
+      <function name="FlashElement" funcname="mcMain.mcCurrentLayout.mcLayout.FlashElement">
+        <param name="a_Element" type="string" desc="name of element to flash"/>
+        <param name="a_Time" type="float" desc="How long in seconds to flash element"/>
+      </function>
+      <function name="DisableLoadoutInput" funcname="mcMain.mcCurrentLayout.mcLayout.DisableLoadoutInput">
+        <param name="a_bDisabled" type="bool" desc="Disable flag"/>
+      </function>
+      <function name="EnableTurnSignal" funcname="mcMain.mcCurrentLayout.mcLayout.EnableTurnSignal">
+        <param name="a_bEnable" type="bool" desc="Enable flag"/>
+      </function>
+      <!-- Tutorial -->
+
+      <!-- SPECTATOR -->
+      <function name="SetSpecPlayerName" funcname="mcMain.mcCurrentLayout.mcSpecHud.SetName" >
+        <param name="Name" desc=" "/>
+      </function>
+      <function name="SetNumSpecPlayers" funcname="mcMain.mcCurrentLayout.mcSpecHud.SetCount" >
+        <param name="count" desc=" "/>
+      </function>
+      <!-- SPECTATOR -->
+      <function name="ShowEjectWarning" funcname="mcMain.mcCurrentLayout.mcLayout.ShowEjectWarning">
+        <param name="iSecondsRemaining" desc="Seconds remaining"/>
+      </function>
+      <function name="DisableSpecCameraButtons" funcname="mcMain.mcCurrentLayout.mcSpecHud.DisableSpecCameraButtons">
+        <param name="a_bDisable" desc="to toggle spectator cameras"/>
+      </function>
+
+      <!-- EXTRACTION -->
+      <function name="SetProgressState" funcname="mcMain.mcCurrentLayout.mcLayout.SetProgressState">
+        <param name="a_sName" desc="Name of progress"/>
+        <param name="a_State" desc="Progress state"/>
+        <param name="a_Type" desc="Type of meter"/>
+        <param name="a_Color" desc="Progress meter color"/>
+      </function>
+      <function name="UpdateProgressMeter" funcname="mcMain.mcCurrentLayout.mcLayout.UpdateProgressMeter">
+        <param name="a_fCurr" desc="Current progress"/>
+        <param name="a_fTotal" desc="Total progress"/>
+      </function>
+      <function name="SetCountdownTimer" funcname="mcMain.mcCurrentLayout.mcLayout.SetCountdownTimer">
+        <param name="a_eType" desc="Type of countdown timer"/>
+        <param name="a_Name" desc="Name of countdown timer"/>
+        <param name="a_Text" desc="Help text"/>
+      </function>
+      <function name="UpdateCountdownTime" funcname="mcMain.mcCurrentLayout.mcLayout.UpdateCountdownTime">
+        <param name="a_fCurrTime" desc="current time"/>
+        <param name="a_fTotalTime" desc="Total time"/>
+      </function>
+      <function name="SetExtractionScore" funcname="mcMain.mcCurrentLayout.mcLayout.SetExtractionScore">
+        <param name="a_iTeamScore" desc="Team score"/>
+        <param name="a_iEnemyScore" desc="Enemy score"/>
+      </function>
+
+      <function name="UpdateVoipState" funcname="mcMain.mcCurrentLayout.mcLayout.UpdateVoipState">
+        <param name="a_UserId" desc="User Id"/>
+        <param name="a_UserName" desc="User Name"/>
+        <param name="a_bIsTalking" desc="Is User Talking"/>
+        <param name="a_bIsInLance" desc="In Lance"/>
+        <param name="a_bIsTeamLeader" desc="Team Leader"/>
+      </function>
+
+      <!-- INCURSION ==================================================================================== -->
+      <function name="UpdateIncursionBaseStatus" funcname="mcMain.mcCurrentLayout.mcLayout.UpdateIncursionBaseStatus">
+        <param name="a_Id" type="int" desc="Id"/>
+        <param name="a_DamageCounter" type="int" desc="Damage counter"/>
+        <param name="a_Destroyed" type="int" desc="Is destroyed"/>
+      </function>
+
+      <function name="UpdateIncursionTowerStatus" funcname="mcMain.mcCurrentLayout.mcLayout.UpdateIncursionTowerStatus">
+        <param name="a_Id" type="int" desc="Id"/>
+        <param name="a_DamageCounter" type="int" desc="Damage counter"/>
+        <param name="a_Destroyed" type="int" desc="Is destroyed"/>
+      </function>
+
+      <function name="UpdateIncursionTowerPower" funcname="mcMain.mcCurrentLayout.mcLayout.UpdateIncursionTowerPower">
+        <param name="a_Id" type="int" desc="Id"/>
+        <param name="a_Enabled" type="int" desc="Enabled"/>
+      </function>
+
+      <function name="UpdatePickupStatus" funcname="mcMain.mcCurrentLayout.mcLayout.UpdatePickupStatus">
+        <param name="a_bHasPickup" desc="Has a pick up"/>
+      </function>
+      <!-- ============================================================================================== -->
+
+		<function name="SetNARCState" funcname="mcMain.mcCurrentLayout.mcLayout.SetNARCState">
+			<param name="a_bIsNARCed" desc="Is the mech currently NARCed"/>
+		</function>
+
+		<function name="SetStealthArmourNoCapState" funcname="mcMain.mcCurrentLayout.mcLayout.SetStealthArmourNoCapState">
+			<param name="a_bTryingToCapWithStealthArmourActive" desc="Is the mech currently trying to capture a point with stealth armour active"/>
+		</function>
+
+		<function name="SetMASCValues" funcname="mcMain.mcCurrentLayout.mcLayout.SetMASCValues">
+			<param name="a_iMASCLimit" desc="Limit at which MASC starts to deal damage?"/>
+			<param name="a_iCurrentMASCValue" desc="Current value MASC should show"/>
+			<param name="a_bActivated" desc="Is the player currently holding down the button?"/>
+		</function>
+
+    <function name="UpdateHitMarkerType" funcname="mcMain.mcCurrentLayout.mcLayout.UpdateHitMarkerType">
+      <param name="a_eType" desc="Hit marker type"/>
+    </function>
+
+    <function name="CommandWheelShow" funcname="mcMain.mcCurrentLayout.mcLayout.CommandWheelShow">
+      <param name="a_eContext" desc="Data"/>
+    </function>
+    <function name="CommandWheelHide" funcname="mcMain.mcCurrentLayout.mcLayout.CommandWheelHide">
+      <param name="a_bExecuteCommand" desc="Execute command on close"/>
+    </function>
+    <function name="UpdateWheelCommands" funcname="mcMain.mcCurrentLayout.mcLayout.UpdateWheelCommands">
+      <param name="a_Ids" desc=": (colon) seperated list of command ids"/>
+    </function>
+
+	<function name="ClearChat" funcname="mcMain.mcCurrentLayout.mcLayout.ClearChat"/>
+
+			<!-- Component Functions ================================================================================ -->
+		</functions>
+    <events>
+      <event name="SyncChatText" fscommand="SyncChatText">
+        <param name="msg" desc="msg to send"/>
+        <param name="type" desc="Type Team,all,lance"/>
+      </event>
+      <event name="SetChatScreenId" fscommand="SetChatScreenId">
+        <param name="screenId" desc="Screen ID" />
+      </event>
+      <event name="SendChat" fscommand="SendChat">
+        <param name="msg" desc="msg to send"/>
+        <param name="type" desc="Type Team,all,lance"/>
+      </event>
+      <event name="InGameChatLoaded" fscommand="InGameChatLoaded"/>
+
+      <event name="Toggle Weapon Group" fscommand="onToggleWeaponGroup">
+        <param name="weaponID" desc="The weapon ID in the list"/>
+        <param name="groupID" desc="The group ID to be toggled"/>
+        <param name="bOn" desc="toggle on or off"/>
+        <param name="typeID" desc="The type of the loadout item"/>
+      </event>
+
+      <event name="Highlight Vert change" fscommand="onHighlightVertChange">
+        <param name="highlightIdx" desc="the column that is highlighted"/>
+      </event>
+
+      <event name="OnLoaded" fscommand="OnLoaded"/>
+      <event name="OnUnLoaded" fscommand="OnUnLoaded"/>
+
+      <event name="onGridLoaded" fscommand="onGridLoaded"/>
+
+      <event name="Battlegrid Commands" fscommand="onBGCommand">
+        <param name="commandID" desc="id of the command"/>
+        <param name="markerId" desc="id of marker"/>
+        <param name="lanceID" desc="id of the lance"/>
+        <param name="posX" desc="world X pos"/>
+        <param name="posY" desc="world Y pos"/>
+      </event>
+      <event name="onBGRemoveOrder" fscommand="onBGRemoveOrder">
+        <param name="iOrderId" desc="id of the order"/>
+        <param name="lanceID" desc="id of the lance"/>
+      </event>
+      <event name="OnResignBGCommand" fscommand="OnResignBGCommand"/>
+      <event name="OnTakeBGCommand" fscommand="OnTakeBGCommand"/>
+      <event name="OnTakeBGLanceCommand" fscommand="OnTakeBGLanceCommand"/>
+      <event name="OnSwapBGLanceUsers" fscommand="OnSwapBGLanceUsers">
+        <param name="EntityAID" desc="first entity"/>
+        <param name="EntityBID" desc="second entity"/>
+        <param name="TargetLance" desc="Target Lance"/>
+      </event>
+
+      <event name="PlaySound" fscommand="PlaySound">
+        <param name="sound" desc="string name of sound to play"/>
+      </event>
+
+      <event name="StopSound" fscommand="StopSound">
+        <param name="sound" desc="string name of sound to stop"/>
+      </event>
+
+      <event name="OnHUDComponentClicked" fscommand="OnHUDComponentClicked">
+        <param name="Name" type="string" desc="Name of component clicked"/>
+      </event>
+      <event name="OnLoadoutResized" fscommand="OnLoadoutResized">
+        <param name="ListPosition" type="int" desc="Position of loadout"/>
+      </event>
+      <event name="SpecMode" fscommand="SpecMode"/>
+      <event name="NextSpectator" fscommand="NextSpectator"/>
+      <event name="PrevSpectator" fscommand="PrevSpectator"/>
+
+      <event name="WheelCommandEvent" fscommand="WheelCommandEvent">
+        <param name="commandname" desc="string name of command that was selected"/>
+      </event>
+
+
+    </events>
+
+	</UIElement>
+
+	<UIElement name="Scoreboard" >
+
+		<GFx file="HUD\Screens\Scoreboard.gfx" layer="1">
+			<Constraints>
+				<Align mode="dynamic" halign="center" valign="center" scale="1"/>
+			</Constraints>
+		</GFx>
+
+		<functions>
+			<function name="Scoreboard_SetRegionInfo" funcname="mcScoreboard.SetRegionInfo">
+				<param name="RegionInfo" desc=""/>
+			</function>
+			<function name="SetPlayerData" funcname="mcScoreboard.SetPlayerData">
+				<param name="id" desc="" type="number"/>
+				<param name="strData" desc="stringed data" type="string"/>
+				<param name="OnYourTeam" desc="" type="bool"/>
+				<param name="IsDropshipMode" desc="" type="bool"/>
+			</function>
+			<function name="SetDropshipData" funcname="mcScoreboard.SetDropshipData">
+				<param name="sData" type="string"/>
+				<param name="bIsDropshipMode" type="bool"/>
+			</function>
+			<function name="SBGameScore" funcname="mcScoreboard.UpdateGameScore">
+				<param name="a_iLeft" desc="score to show on the left" type="string"/>
+				<param name="a_iLeftSecondary" desc="secondary score to show on the left" type="string"/>
+				<param name="a_iRight" desc="score to show on the right" type="string"/>
+				<param name="a_iRightSecondary" desc="secondary score to show on the right" type="string"/>
+			</function>
+      <function name="SetScoutingBonuses" funcname="mcScoreboard.SetScoutingBonuses">
+        <param name="a_eDropshipScan" desc="Dropship enabled" type="int"/>
+        <param name="a_eSensorSweet" desc="Sensor enabled" type="int"/>
+        <param name="a_eArtillery" desc="Artillery enabled" type="int"/>
+      </function>
+		</functions>
+		<events>
+			<event name="HideScoreboard" fscommand="HideScoreboard"/>
+			<event name="InGameRequest" fscommand="InGameRequest">
+				<param name="RequestId" desc="id of the request we want to perfrom" type="Number" />
+				<param name="OmicronId" desc="Id of player to mute" type="Number"/>
+			</event>
+		</events>
+
+	</UIElement>
+
+	<UIElement name="PreRoundStart" mouseevents="1" keyevents="1" cursor="1" >
+
+		<GFx file="PreRoundStart\PreRoundStart.gfx" layer="2">
+			<Constraints>
+				<Align mode="dynamic" halign="center" valign="center" scale="1"/>
+			</Constraints>
+		</GFx>
+
+		<functions>
+			<function name="PreRound_SetGameType" funcname="mcScreen.SetGameType">
+				<param name="GameMode" desc="what mode is it"/>
+				<param name="MatchType" desc="public private"/>
+				<param name="NoAttackers" desc="no attackers"/>
+			</function>
+			<function name="PreRound_SetMapInfo" funcname="mcScreen.SetMapInfo">
+				<param name="MapName" desc=""/>
+				<param name="MapImgPath" desc=""/>
+				<param name="MapTime" desc=""/>
+			</function>
+			<function name="PreRound_SetRegionInfo" funcname="mcScreen.SetRegionInfo">
+				<param name="RegionInfo" desc=""/>
+			</function>
+			<function name="ScrollChatUp" funcname="mcScreen.ScrollChatUp" />
+			<function name="ScrollChatDown" funcname="mcScreen.ScrollChatDown" />
+			<function name="ScrollChatToBottom" funcname="mcScreen.ScrollChatToBottom" />
+			<function name="RequestSendChat" funcname="mcScreen.RequestSendChat" />
+			<function name="ReceiveSyncedChatText" funcname="mcScreen.ReceiveSyncedChatText">
+				<param name="Type" desc="Type all/team/lance" type="number" />
+				<param name="Message" desc="Message" type="string" />
+				<param name="ActiveScreenID" desc="The active screen ID (preround, in-game, eor, death, etc.)" type="number" />
+			</function>
+			<function name="PostChatMessage" funcname="mcScreen.PostChatMessage">
+				<param name="DisplayName" desc="user sending text" type="string"/>
+				<param name="Message" desc="string msg that is sent" type="string"/>
+				<param name="Mode" desc="mode all/team/lance" type="number"/>
+				<param name="bDead" desc="is player dead" type="bool"/>
+				<param name="bCommander" desc="is player Commander" type="bool"/>
+				<param name="bLanceCommander" desc="is player Lance Commander" type="bool"/>
+				<param name="bIsSameTeam" desc="is player on the same team as local player"/>
+				<param name="ActiveScreenID" desc="The active screen ID (preround, in-game, eor, death, etc.)" type="number" />
+				<param name="Timestamp" desc="Timestamp" type="number" />
+			</function>
+			<function name="PostSystemChatMsg" funcname="mcScreen.PostSystemChatMsg">
+				<param name="DataArray" desc=" " type="string"/>
+			</function>
+			<function name="PreRound_SetPlayerData" funcname="mcScreen.SetPlayerData">
+				<param name="id" desc="" type="number"/>
+				<param name="strData" desc="stringed data" type="string"/>
+				<param name="OnYourTeam" desc="" type="bool"/>
+        <param name="InYourLance" desc="" type="bool"/>
+        <param name="IsYou" desc="" type="bool"/>
+        <param name="ReadyStatus" desc="" type="number"/>
+        <param name="isCompPlay" desc="Is comp play" type="number"/>
+      </function>
+      <function name="PreRound_SetTimer" funcname="mcScreen.SetTimer">
+        <param name="timeLeft" desc="" type="number"/>
+      </function>
+      <function name="OnAction" funcname="mcMain.OnAction">
+        <param name="action" desc="action that has happened"/>
+        <param name="activationMode" desc="event pressed/released/held"/>
+      </function>
+      <function name="InitChatPanel" funcname="mcScreen.InitChatPanel">
+        <param name="a_enableAll" desc="Enable all chat" type="bool"/>
+        <param name="a_enableTeam" desc="Enable team chat" type="bool"/>
+        <param name="a_enableLance" desc="Enable lance chat" type="bool"/>
+      </function>
+      <function name="SetChatCallouts" funcname="mcScreen.SetChatCallouts">
+        <param name="a_sScrollUp" desc="Scroll up key"/>
+        <param name="a_sScrollDown" desc="Scroll down key"/>
+        <param name="a_sScrollEnd" desc="Scroll Bottom key"/>
+      </function>
+      <function name="SetScoutingBonuses" funcname="mcScreen.SetScoutingBonuses">
+        <param name="a_eDropshipScan" desc="Dropship enabled" type="int"/>
+        <param name="a_eSensorSweet" desc="Sensor enabled" type="int"/>
+        <param name="a_eArtillery" desc="Artillery enabled" type="int"/>
+      </function>
+			<function name="ClearChat" funcname="mcScreen.ClearChat"/>
+    
+  </functions>
+		<events>
+      <event name="InGameChatLoaded" fscommand="InGameChatLoaded"/>
+			<event name="HidePreRound" fscommand="HidePreRound"/>
+			<event name="SyncChatText" fscommand="SyncChatText">
+				<param name="msg" desc="msg to send"/>
+				<param name="type" desc="Type Team,all,lance"/>
+			</event>
+			<event name="SetChatScreenId" fscommand="SetChatScreenId">
+				<param name="screenId" desc="Screen ID" />
+			</event>
+			<event name="SendChat" fscommand="SendChat">
+				<param name="msg" desc="msg to send" type="string"/>
+				<param name="type" desc="Type Team,all,lance" type="number"/>
+			</event>
+			<event name="OnTakePRLanceCommand" fscommand="OnTakePRLanceCommand"/>
+			<event name="OnResignPRCommand" fscommand="OnResignPRCommand"/>
+			<event name="OnPRPlayerReady" fscommand="OnPRPlayerReady"/>
+			<event name="OnTakePRTeamCommand" fscommand="OnTakePRTeamCommand"/>
+			<event name="OnSwapPRLanceUsers" fscommand="OnSwapPRLanceUsers">
+    	    	<param name="EntityAID" desc="first entity"/>
+	    	    <param name="EntityBID" desc="second entity"/>
+    	    	<param name="TargetLance" desc="Target Lance"/>
+			</event>
+			<event name="InGameRequest" fscommand="InGameRequest">
+				<param name="RequestId" desc="id of the request we want to perfrom" type="Number" />
+				<param name="OmicronId" desc="Id of player to mute" type="Number"/>
+			</event>
+		</events>
+	</UIElement>
+</UIElements>
